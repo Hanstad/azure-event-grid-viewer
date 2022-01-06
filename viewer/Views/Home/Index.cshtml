@@ -8,6 +8,8 @@
         <strong>Azure Event Grid Viewer</strong>
     </p>
     <p style="float: right;">
+        Filter:&nbsp;<Input type="Text" id="filterText" onkeyup="filerExistingItems()" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button class="btn btn-primary btn-xs" id="clear-events">
             <span class="glyphicon glyphicon-trash"></span>
         </button>
@@ -54,6 +56,28 @@
     <script type="text/javascript">
 
         var hubConnection;
+        
+        var filerExistingItems = function() {
+            var filter = filterText.value;
+            
+            var table = document.getElementById("grid-events");
+            for (var i = 1, row; row = table.rows[i]; i++) {
+                
+                if (row.innerHTML.indexOf(filter) >= 0) {
+                    table.rows[i].style.display = null;//'block';
+
+                    if (table.rows[i].className.indexOf('hiddenRow') >= 0) {
+                        table.rows[i - 1].style.display = null;//'block';
+                    }
+                }
+                else {
+                    table.rows[i].style.display = 'none';
+                    if (table.rows[i].className.indexOf('hiddenRow') >= 0) {
+                        table.rows[i - 1].style.display = 'none';
+                    }
+                }
+            }
+        }
 
         var clear = function () {
             $("#grid-events").find("tr:gt(0)").remove();
