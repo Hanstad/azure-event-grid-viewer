@@ -23,6 +23,7 @@
     <th>&nbsp;</th>
     <th>Event Type</th>
     <th>Subject</th>
+    <th>EventTime</th>
     </thead>
     <tbody id="grid-event-details"></tbody>
 </table>
@@ -36,6 +37,7 @@
         </td>
         <td>{{gridEventType}}</td>
         <td>{{gridEventSubject}}</td>
+        <td>{{gridEventTime}}</td>
     </tr>
     <tr class="hiddenRow collapse" id="event-{{gridEventId}}">
         <td colspan="12">
@@ -88,6 +90,7 @@
             var context = {
                 gridEventType: eventType,
                 gridEventSubject: subject,
+                gridEventTime: eventTime,
                 gridEventId: id,
                 gridEvent: data
             };
